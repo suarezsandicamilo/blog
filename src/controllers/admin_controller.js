@@ -1,7 +1,7 @@
 //
 
 const express = require('express');
-const { Sequelize, where } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 /**
  * 
@@ -9,7 +9,7 @@ const { Sequelize, where } = require('sequelize');
  * @returns 
  */
 module.exports = (sequelize) => {
-  const { User } = require('./../models/user.js')(sequelize);
+  const { User } = require('./../models/models.js');
 
   class AdminController {
     /**

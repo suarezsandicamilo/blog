@@ -9,7 +9,7 @@ const { Sequelize } = require('sequelize');
  * @returns 
  */
 module.exports = (sequelize) => {
-  const { User } = require('./../models/user.js')(sequelize);
+  const { User } = require('./../models/models.js');
 
   class UserController {
     /**

@@ -6,19 +6,18 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const { Sequelize } = require('sequelize');
 
 //
 
-const config = require('./../config/config.json').dev;
-
-const sequelize = new Sequelize(config);
+const { sequelize } = require('./models/models.js');
 
 //
 
 const indexRouter = require('./routes/index.js');
 const usersRouter = require('./routes/users_router.js')(sequelize);
 const adminRouter = require('./routes/admin_router.js')(sequelize);
+
+//
 
 const app = express();
 

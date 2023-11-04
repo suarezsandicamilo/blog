@@ -2,15 +2,15 @@
 
 const { DataTypes, Model, Sequelize } = require('sequelize');
 
+class User extends Model {
+}
+
 /**
  * 
  * @param {Sequelize} sequelize 
  * @returns 
  */
-module.exports = (sequelize) => {
-  class User extends Model {
-  }
-
+const create = (sequelize) => {
   User.init({
     id: {
       type: DataTypes.INTEGER,
@@ -47,10 +47,13 @@ module.exports = (sequelize) => {
     updatedAt: false
   });
 
-  // User.sync();
-
   // Test
   User.sync({ force: true });
 
   return { User };
+};
+
+module.exports = {
+  create,
+  User
 };
