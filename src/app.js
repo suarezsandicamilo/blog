@@ -5,6 +5,7 @@ const path = require('path');
 const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 //
 
@@ -35,5 +36,12 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 3600000 }
+}));
 
 module.exports = app;
