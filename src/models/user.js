@@ -12,30 +12,30 @@ module.exports = (sequelize) => {
   }
 
   User.init({
-    ID: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    USERNAME: {
+    username: {
       type: DataTypes.STRING(63),
       allowNull: false,
       unique: true
     },
-    EMAIL: {
+    email: {
       type: DataTypes.STRING(255),
       allowNull: false,
       unique: true
     },
-    HASHED_PASSWORD: {
+    hashed_password: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    IS_ADMINISTRATOR: {
+    is_administrator: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    IS_AUTHOR: {
+    is_author: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
