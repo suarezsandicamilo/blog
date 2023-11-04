@@ -13,10 +13,14 @@ module.exports = (sequelize) => {
 
   const router = express.Router();
 
-  router.post('/', async (req, res, next) => {
-    console.log(req.body);
+  const controller = new UserController();
 
-    await new UserController().create(req, res, next);
+  router.post('/', async (req, res, next) => {
+    await controller.create(req, res, next);
+  });
+
+  router.get('/:user_id', async (req, res, next) => {
+    await controller.getById(req, res, next);
   });
 
   return router;

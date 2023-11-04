@@ -22,12 +22,33 @@ module.exports = (sequelize) => {
       const { username, email, hashed_password } = req.body;
 
       await User.create({
-        USERNAME: username,
-        EMAIL: email,
-        HASHED_PASSWORD: hashed_password
+        username,
+        email,
+        hashed_password
       });
 
-      res.redirect('/');
+      res.send();
+    }
+
+    /**
+     * 
+     * @param {express.Request} req 
+     * @param {express.Response} res 
+     * @param {express.NextFunction} next 
+     */
+    async getById(req, res, next) {
+      const { user_id } = req.params;
+
+      const user = await User.findByPk(parseInt(user_id));
+
+      if (user === null) {
+        res.statusCode = 404;
+        console.error(`User ${user_id} not found.`);
+        next();
+        return;
+      }
+
+      res.send(user.toJSON());
     }
   }
 
