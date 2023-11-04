@@ -1,22 +1,22 @@
 {
-  "development": {
+  "dev": {
     "username": "root",
     "password": null,
-    "database": "blog_database_development",
+    "database": "BLOG_DEV",
     "host": "127.0.0.1",
     "dialect": "mssql"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "BLOG_TEST",
     "host": "127.0.0.1",
     "dialect": "mssql"
   },
-  "production": {
+  "prod": {
     "username": "root",
     "password": null,
-    "database": "database_production",
+    "database": "BLOG_PROD",
     "host": "127.0.0.1",
     "dialect": "mssql"
   }
