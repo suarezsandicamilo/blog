@@ -18,6 +18,7 @@ const sequelize = new Sequelize(config);
 
 const indexRouter = require('./routes/index.js');
 const usersRouter = require('./routes/users_router.js')(sequelize);
+const adminRouter = require('./routes/admin_router.js')(sequelize);
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, './../public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
