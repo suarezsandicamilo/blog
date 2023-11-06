@@ -9,13 +9,16 @@ const session = require('express-session');
 
 //
 
-const { sequelize } = require('./models/models.js');
+require('./models/models.js');
 
 //
 
 const indexRouter = require('./routes/index.js');
-const usersRouter = require('./routes/users_router.js')(sequelize);
-const adminRouter = require('./routes/admin_router.js')(sequelize);
+const usersRouter = require('./routes/users_router.js');
+const adminRouter = require('./routes/admin_router.js');
+const postsRouter = require('./routes/posts_router.js');
+// const categoriesRouter = require('./controllers/categories_router.js');
+// const authRouter = require('./controllers/auth_router.js');
 
 //
 
@@ -32,6 +35,9 @@ app.use(express.static(path.join(__dirname, './../public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/posts', postsRouter);
+// app.use('/categories', categoriesRouter);
+// app.use('/authRouter', authRouter);
 
 app.use((req, res, next) => {
   next(createError(404));

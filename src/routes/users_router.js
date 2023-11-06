@@ -1,15 +1,9 @@
 //
 
 const express = require('express');
-const { Sequelize } = require('sequelize');
 
-/**
- * 
- * @param {Sequelize} sequelize 
- * @returns 
- */
-module.exports = (sequelize) => {
-  const { UsersController } = require('../controllers/users_controller.js')(sequelize);
+module.exports = () => {
+  const { UsersController } = require('./../controllers/users_controller.js');
 
   const router = express.Router();
 

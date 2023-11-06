@@ -1,14 +1,8 @@
 //
 
 const express = require('express');
-const { Sequelize } = require('sequelize');
 
-/**
- * 
- * @param {Sequelize} sequelize 
- * @returns 
- */
-module.exports = (sequelize) => {
+module.exports = () => {
   const { User } = require('./../models/models.js');
 
   class AdminController {

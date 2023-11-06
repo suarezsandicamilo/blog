@@ -1,14 +1,8 @@
 //
 
 const express = require('express');
-const { Sequelize } = require('sequelize');
 
-/**
- * 
- * @param {Sequelize} sequelize 
- * @returns 
- */
-module.exports = (sequelize) => {
+module.exports = () => {
   const { Post } = require('./../models/models.js');
 
   class PostsController {
@@ -22,10 +16,14 @@ module.exports = (sequelize) => {
       const { title, summary, text, image, author_id } = req.body;
 
       const date = new Date();
+      date.setHours(0, 0, 0, 0);
+
+      const time = new Date();
+      time.setFullYear(0, 0, 0);
 
       await Post.create({
-        date: date.setHours(0, 0, 0, 0),
-        time: date,
+        date,
+        time,
         title,
         summary,
         text,
