@@ -51,8 +51,10 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
+const { secret } = require('./../config/secret.json');
+
 app.use(session({
-  secret: 'secret',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 3600000 }
