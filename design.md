@@ -54,8 +54,8 @@ CREATE TABLE POST_HAS_CATEGORY (
 
 | Use Case                 | Method | URL                                     | Body                                   |
 | ------------------------ | ------ | --------------------------------------- | -------------------------------------- |
-| ~~Create User~~          | POST   | /users                                  | username, email, hashed_password       |
-| ~~Get User By Id~~       | GET    | /users/{userId}                         |                                        |
+| Create User              | POST   | /users                                  | username, email, hashed_password       |
+| Get User By Id           | GET    | /users/{userId}                         |                                        |
 | Get All Users            | GET    | /admin/users                            |                                        |
 | Get All Authors          | GET    | /admin/users/authors                    |                                        |
 | Create Post              | POST   | /posts                                  | title, summary, text, image, author_id |

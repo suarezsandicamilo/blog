@@ -14,15 +14,11 @@ class PostsController {
   async create(req, res, next) {
     const { title, summary, text, image, author_id } = req.body;
 
-    const date = new Date();
-    date.setHours(0, 0, 0, 0);
-
-    const time = new Date();
-    time.setFullYear(0, 0, 0);
+    const date = new Date().toISOString();
 
     await Post.create({
       date,
-      time,
+      time: date,
       title,
       summary,
       text,
