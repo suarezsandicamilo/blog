@@ -11,7 +11,7 @@ const { Sequelize } = require('sequelize');
 module.exports = (sequelize) => {
   const { User } = require('./../models/models.js');
 
-  class UserController {
+  class UsersController {
     /**
      * 
      * @param {express.Request} req 
@@ -52,5 +52,5 @@ module.exports = (sequelize) => {
     }
   }
 
-  return { UserController };
+  return { UsersController };
 };
