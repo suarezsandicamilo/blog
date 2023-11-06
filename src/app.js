@@ -17,8 +17,8 @@ const indexRouter = require('./routes/index.js');
 const usersRouter = require('./routes/users_router.js');
 const adminRouter = require('./routes/admin_router.js');
 const postsRouter = require('./routes/posts_router.js');
-// const categoriesRouter = require('./controllers/categories_router.js');
-// const authRouter = require('./controllers/auth_router.js');
+const categoriesRouter = require('./routes/categories_router.js');
+const authRouter = require('./routes/auth_router.js');
 
 //
 
@@ -36,8 +36,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/posts', postsRouter);
-// app.use('/categories', categoriesRouter);
-// app.use('/authRouter', authRouter);
+app.use('/categories', categoriesRouter);
+app.use('/auth/users', authRouter);
 
 app.use((req, res, next) => {
   next(createError(404));

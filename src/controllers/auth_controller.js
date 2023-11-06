@@ -4,33 +4,16 @@ const express = require('express');
 
 const { User } = require('./../models/models.js');
 
-class UsersController {
+class AuthController {
   /**
    * 
    * @param {express.Request} req 
    * @param {express.Response} res 
    * @param {express.NextFunction} next 
    */
-  async create(req, res, next) {
-    const { username, email, hashed_password } = req.body;
-
-    await User.create({
-      username,
-      email,
-      hashed_password
-    });
-
-    res.send();
-  }
-
-  /**
-   * 
-   * @param {express.Request} req 
-   * @param {express.Response} res 
-   * @param {express.NextFunction} next 
-   */
-  async getById(req, res, next) {
+  async authenticate(req, res, next) {
     const { user_id } = req.params;
+    const { hashed_password } = req.body;
 
     const user = await User.findByPk(parseInt(user_id));
 
@@ -41,8 +24,10 @@ class UsersController {
       return;
     }
 
-    res.send(user.toJSON());
+    res.send({
+      result: user.hashed_password === hashed_password
+    });
   }
 }
 
-module.exports = { UsersController };
+module.exports = { AuthController };

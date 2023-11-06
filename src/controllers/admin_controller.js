@@ -2,46 +2,44 @@
 
 const express = require('express');
 
-module.exports = () => {
-  const { User } = require('./../models/models.js');
+const { User } = require('./../models/models.js');
 
-  class AdminController {
-    /**
-     * 
-     * @param {express.Request} req 
-     * @param {express.Response} res 
-     * @param {express.NextFunction} next 
-     */
-    async getAllUsers(req, res, next) {
-      // TODO: Check admin permissions
+class AdminController {
+  /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+  async getAllUsers(req, res, next) {
+    // TODO: Check admin permissions
 
-      const users = await User.findAll();
+    const users = await User.findAll();
 
-      res.send({
-        users: users.map(u => u.toJSON())
-      });
-    }
-
-    /**
-     * 
-     * @param {express.Request} req 
-     * @param {express.Response} res 
-     * @param {express.NextFunction} next 
-     */
-    async getAllAuthors(req, res, next) {
-      // TODO: Check admin permissions
-
-      const users = await User.findAll({
-        where: {
-          is_administrator: true
-        }
-      });
-
-      res.send({
-        users: users.map(u => u.toJSON())
-      });
-    }
+    res.send({
+      users: users.map(u => u.toJSON())
+    });
   }
 
-  return { AdminController };
-};
+  /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+  async getAllAuthors(req, res, next) {
+    // TODO: Check admin permissions
+
+    const users = await User.findAll({
+      where: {
+        is_administrator: true
+      }
+    });
+
+    res.send({
+      users: users.map(u => u.toJSON())
+    });
+  }
+}
+
+module.exports = { AdminController };
