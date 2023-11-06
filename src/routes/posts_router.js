@@ -34,4 +34,12 @@ router.get('/:post_id/comments', async (req, res, next) => {
   await comments_controller.getAll(req, res, next);
 });
 
+router.post('/:post_id/categories/:category_id', async (req, res, next) => {
+  await posts_controller.addCategoryToPost(req, res, next);
+});
+
+router.delete('/:post_id/categories/:category_id', async (req, res, next) => {
+  await posts_controller.removeCategoryFromPost(req, res, next);
+});
+
 module.exports = router;
