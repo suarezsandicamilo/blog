@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { Post, Category } = require('./../models/models.js');
+const { Post, Category, PostHasCategory } = require('./../models/models.js');
 
 class PostsController {
   /**
@@ -14,19 +14,27 @@ class PostsController {
   async create(req, res, next) {
     const { title, summary, text, image, author_id } = req.body;
 
-    const date = new Date().toISOString();
+    let result = true;
 
-    await Post.create({
-      date,
-      time: date,
-      title,
-      summary,
-      text,
-      image,
-      author_id
-    });
+    try {
+      const date = new Date().toISOString();
 
-    res.send();
+      await Post.create({
+        date,
+        time: date,
+        title,
+        summary,
+        text,
+        image,
+        author_id
+      });
+    } catch (e) {
+      console.error(e);
+
+      result = false;
+    }
+
+    res.send({ result });
   }
 
   /**
@@ -38,16 +46,23 @@ class PostsController {
   async getById(req, res, next) {
     const { post_id } = req.params;
 
+    let result = null;
+    let error = '';
+
     const post = await Post.findByPk(parseInt(post_id));
 
-    if (post === null) {
+    if (post !== null) {
+      result = post.toJSON();
+    } else {
       res.statusCode = 404;
-      console.error(`Post ${post_id} not found.`);
-      next();
-      return;
+
+      error = `Post ${post_id} not found.`;
     }
 
-    res.send(post.toJSON());
+    res.send({
+      result,
+      error
+    });
   }
 
   /**
@@ -67,58 +82,89 @@ class PostsController {
   async addCategoryToPost(req, res, next) {
     const { post_id, category_id } = req.params;
 
+    let result = true;
+    let error = '';
+
     const post = await Post.findByPk(parseInt(post_id));
     const category = await Category.findByPk(parseInt(category_id));
 
     if (post === null || category === null) {
       res.statusCode = 404;
 
+      result = false;
+
       if (post === null) {
-        console.error(`Post ${post_id} not found.`);
+        error = `Post ${post_id} not found.`;
       }
 
       if (category === null) {
-        console.error(`Category ${category_id} not found.`);
+        error = `Category ${category_id} not found.`;
       }
-
-      next();
-      return;
     }
 
-    post.addCategory(category, {
-      through: 'PostHasCategory'
-    });
-    post.removeHook()
+    if (result) {
+      try {
+        await PostHasCategory.create({
+          post_id,
+          category_id
+        });
+      } catch (e) {
+        console.error(e);
 
-    res.send();
+        result = false;
+      }
+    }
+
+    res.send({
+      result,
+      error
+    });
   }
 
   async removeCategoryFromPost(req, res, next) {
     const { post_id, category_id } = req.params;
 
+    let result = true;
+    let error = '';
+
     const post = await Post.findByPk(parseInt(post_id));
     const category = await Category.findByPk(parseInt(category_id));
 
     if (post === null || category === null) {
       res.statusCode = 404;
 
+      result = false;
+
       if (post === null) {
-        console.error(`Post ${post_id} not found.`);
+        error = `Post ${post_id} not found.`;
       }
 
       if (category === null) {
-        console.error(`Category ${category_id} not found.`);
+        error = `Category ${category_id} not found.`;
       }
-
-      next();
-      return;
     }
 
-    post.removeCategory(category, {
-      through: 'PostHasCategory'
-    });
+    if (result) {
+      const post_has_category = await PostHasCategory.findOne({
+        where: {
+          post_id,
+          category_id
+        }
+      });
 
-    res.send();
+      if (post_has_category !== null) {
+        post_has_category.destroy();
+      } else {
+        result = false;
+
+        error = `Post ${post_id} doesn't have the category ${category_id}.`;
+      }
+    }
+
+    res.send({
+      result,
+      error
+    });
   }
 }
 

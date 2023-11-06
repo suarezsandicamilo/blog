@@ -45,9 +45,6 @@ module.exports = (sequelize, User, Post) => {
     updatedAt: false
   });
 
-  Post.hasMany(Comment);
-  Comment.belongsTo(Post);
-
   Comment.sync();
 
   return { Comment };

@@ -7,7 +7,7 @@ const { DataTypes, Model, Sequelize } = require('sequelize');
  * @param {Sequelize} sequelize 
  * @returns 
  */
-module.exports = (sequelize, User, Category) => {
+module.exports = (sequelize, User) => {
   class Post extends Model {
   }
 
@@ -55,9 +55,6 @@ module.exports = (sequelize, User, Category) => {
     createdAt: false,
     updatedAt: false
   });
-
-  Post.belongsToMany(Category, { through: 'PostHasCategory' });
-  Category.belongsToMany(Post, { through: 'PostHasCategory' });
 
   Post.sync();
 
