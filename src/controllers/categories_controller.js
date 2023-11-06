@@ -14,11 +14,19 @@ class CategoriesController {
   async create(req, res, next) {
     const { name } = req.body;
 
-    await Category.create({
-      name
-    });
+    let result = true;
 
-    res.send();
+    try {
+      await Category.create({
+        name
+      });
+    } catch (e) {
+      console.error(e);
+
+      result = false;
+    }
+
+    res.send({ result });
   }
 
   /**
@@ -30,16 +38,23 @@ class CategoriesController {
   async getById(req, res, next) {
     const { category_id } = req.params;
 
+    let result = null;
+    let error = '';
+
     const category = await Category.findByPk(parseInt(category_id));
 
-    if (category === null) {
+    if (category !== null) {
+      result = category.toJSON();
+    } else {
       res.statusCode = 404;
-      console.error(`Category ${category_id} not found.`);
-      next();
-      return;
+
+      error = `Category ${category_id} not found.`;
     }
 
-    res.send(category.toJSON());
+    res.send({
+      result,
+      error
+    });
   }
 
   /**

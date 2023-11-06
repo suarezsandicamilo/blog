@@ -15,17 +15,28 @@ class AuthController {
     const { user_id } = req.params;
     const { hashed_password } = req.body;
 
+    let result = true;
+    let error = '';
+
     const user = await User.findByPk(parseInt(user_id));
 
     if (user === null) {
       res.statusCode = 404;
-      console.error(`User ${user_id} not found.`);
-      next();
-      return;
+
+      result = false;
+      error = `User ${user_id} not found.`
+    }
+
+    if (result) {
+      if (user.hashed_password === hashed_password) {
+        result = false;
+        error = 'Failed authentication.';
+      }
     }
 
     res.send({
-      result: user.hashed_password === hashed_password
+      result,
+      error
     });
   }
 }

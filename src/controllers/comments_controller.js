@@ -15,13 +15,21 @@ class CommentsController {
     const { post_id } = req.params;
     const { user_id, text } = req.body;
 
-    await Comment.create({
-      post_id,
-      user_id,
-      text
-    });
+    let result = true;
 
-    res.send();
+    try {
+      await Comment.create({
+        post_id,
+        user_id,
+        text
+      });
+    } catch (e) {
+      console.error(e);
+
+      result = false;
+    }
+
+    res.send({ result });
   }
 
   /**
@@ -33,6 +41,9 @@ class CommentsController {
   async getById(req, res, next) {
     const { post_id, comment_id } = req.params;
 
+    let result = null;
+    let error = '';
+
     const comment = await Comment.findOne({
       where: {
         post_id,
@@ -40,14 +51,17 @@ class CommentsController {
       }
     })
 
-    if (comment === null) {
+    if (comment !== null) {
+      result = comment.toJSON();
+    } else {
       res.statusCode = 404;
-      console.error(`Comment ${post_id}-${comment_id} not found.`);
-      next();
-      return;
+      error = `Comment ${post_id}-${comment_id} not found.`;
     }
 
-    res.send(comment.toJSON());
+    res.send({
+      result,
+      error
+    });
   }
 
   /**
