@@ -2,15 +2,15 @@
 
 const { DataTypes, Model, Sequelize } = require('sequelize');
 
-class Category extends Model {
-}
-
 /**
  * 
  * @param {Sequelize} sequelize 
  * @returns 
  */
-const create = (sequelize) => {
+module.exports = (sequelize, Post) => {
+  class Category extends Model {
+  }
+
   Category.init({
     id: {
       type: DataTypes.INTEGER,
@@ -24,19 +24,13 @@ const create = (sequelize) => {
     }
   }, {
     sequelize,
-    modelName: 'CATEGORY',
-    tableName: 'CATEGORY',
+    modelName: 'Category',
+    tableName: 'Category',
     createdAt: false,
     updatedAt: false
   });
 
-  // Test
-  Category.sync({ force: true });
+  Category.sync();
 
   return { Category };
-};
-
-module.exports = {
-  create,
-  Category
 };

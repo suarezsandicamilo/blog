@@ -2,18 +2,15 @@
 
 const { DataTypes, Model, Sequelize } = require('sequelize');
 
-class Post extends Model {
-}
-
-class Comment extends Model {
-}
-
 /**
  * 
  * @param {Sequelize} sequelize 
  * @returns 
  */
-const create = (sequelize) => {
+module.exports = (sequelize, User, Category) => {
+  class Post extends Model {
+  }
+
   Post.init({
     id: {
       type: DataTypes.INTEGER,
@@ -45,58 +42,24 @@ const create = (sequelize) => {
     },
     author_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {
-    sequelize,
-    modelName: 'POST',
-    tableName: 'POST',
-    createdAt: false,
-    updatedAt: false
-  });
-
-  Comment.init({
-    post_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
+      allowNull: false,
       references: {
-        model: Post,
-        key: 'id'
+        model: User,
+        through: 'id'
       }
-    },
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    text: {
-      type: DataTypes.TEXT,
-      allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'COMMENT',
-    tableName: 'COMMENT',
+    modelName: 'Post',
+    tableName: 'Post',
     createdAt: false,
     updatedAt: false
   });
 
-  Post.hasMany(Comment);
-  Comment.belongsTo(Post);
+  Post.belongsToMany(Category, { through: 'PostHasCategory' });
+  Category.belongsToMany(Post, { through: 'PostHasCategory' });
 
-  // Test
-  Post.sync({ force: true });
-  Comment.sync({ force: true });
+  Post.sync();
 
-  return { Post, Comment };
-};
-
-module.exports = {
-  create,
-  Post,
-  Comment
+  return { Post };
 };
