@@ -32,7 +32,7 @@ class AdminController {
 
     const users = await User.findAll({
       where: {
-        is_administrator: true
+        is_author: true
       }
     });
 

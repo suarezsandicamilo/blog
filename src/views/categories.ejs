@@ -1,0 +1,18 @@
+<div class="card mb-4">
+  <div class="card-header">Categorías</div>
+  <div class="card-body">
+    <div class="row">
+        <% categories.categories.forEach((category, index) => { %>
+          <% if (index % 2 === 0) { %>
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <% } %>
+                  <li><a href="#!"><%= category.name %></a></li>
+                <% if (index % 2 !== 0 || index === categories.categories.length - 1) { %>
+              </ul>
+            </div>
+          <% } %>
+        <% }) %>
+    </div>
+  </div>
+</div>

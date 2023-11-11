@@ -1,0 +1,18 @@
+<div class="card mb-4">
+  <div class="card-header">Autores</div>
+  <div class="card-body">
+    <div class="row">
+        <% authors.users.forEach((user, index) => { %>
+          <% if (index % 2 === 0) { %>
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <% } %>
+                  <li><a href="/view/users/<%= user.id %>"><%= user.username %></a></li>
+                <% if (index % 2 !== 0 || index === authors.users.length - 1) { %>
+              </ul>
+            </div>
+          <% } %>
+        <% }) %>
+    </div>
+  </div>
+</div>
