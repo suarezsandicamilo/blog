@@ -28,7 +28,7 @@ class AuthController {
     }
 
     if (result) {
-      if (user.hashed_password === hashed_password) {
+      if (user.hashed_password !== hashed_password) {
         result = false;
         error = `Couldn't authenticate the user ${user_id}.`;
       }

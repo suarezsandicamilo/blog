@@ -11,11 +11,14 @@ router.get('/', async (req, res, next) => {
 
   const posts = await fetch(`http://${req.headers.host}/posts`);
 
+  const sessions = await fetch(`http://${req.headers.host}/sessions`);
+
   res.render('index', {
     title: 'Blog',
     authors: await authors.json(),
     categories: await categories.json(),
-    posts: await posts.json()
+    posts: await posts.json(),
+    sessions: await sessions.json()
   });
 });
 

@@ -2,6 +2,8 @@
 
 const express = require('express');
 
+const { fetchPost } = require('./../helpers.js');
+
 class SessionsController {
   /**
    * 
@@ -13,17 +15,12 @@ class SessionsController {
     const { user_id } = req.params;
     const { hashed_password } = req.body;
 
-    let response = await fetch(`http://${req.headers.host}/auth/users/${user_id}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        hashed_password
-      })
+    const { result, error } = await fetchPost(`http://${req.headers.host}/auth/users/${user_id}`, {
+      hashed_password
     });
 
-    let { result, error } = await response.json();
-
     if (result) {
-      req.session.user_id = user_id;
+      req.session.user_id = parseInt(user_id);
     }
 
     res.send({
