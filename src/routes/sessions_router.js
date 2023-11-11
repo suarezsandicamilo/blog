@@ -8,11 +8,11 @@ const router = express.Router();
 
 const controller = new SessionsController();
 
-router.post('/start/:user_id', async (req, res, next) => {
+router.post('/:user_id', async (req, res, next) => {
   await controller.start(req, res, next);
 });
 
-router.post('/end', async (req, res, next) => {
+router.delete('/', async (req, res, next) => {
   await controller.end(req, res, next);
 });
 

@@ -71,8 +71,8 @@ CREATE TABLE POST_HAS_CATEGORY (
 | Add Category To Post     | POST   | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
 | Remove Category To Post  | DELETE | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
 | Authenticate User        | POST   | /auth/users/{userId}                    | hashed_password                        | result: boolean, error: string   |
-| Start Session            | POST   | /sessions/start/{userId}                | hashed_password                        | result: boolean, error: string   |
-| End Session              | POST   | /sessions/end                           |                                        |                                  |
+| Start Session            | POST   | /sessions/{userId}                      | hashed_password                        | result: boolean, error: string   |
+| End Session              | DELETE | /sessions                               |                                        |                                  |
 | Get Session              | GET    | /sessions                               |                                        | user_id: number                  |
 
 # Pages
