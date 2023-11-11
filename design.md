@@ -56,6 +56,7 @@ CREATE TABLE POST_HAS_CATEGORY (
 | ------------------------ | ------ | --------------------------------------- | -------------------------------------- | -------------------------------- |
 | Create User              | POST   | /users                                  | username, email, hashed_password       | result: boolean                  |
 | Get User By Id           | GET    | /users/{userId}                         |                                        | result: User?, error: string     |
+| Get User By Username     | GET    | /users/by-username/{username}           |                                        | result: User?, error: string     |
 | Get All Users            | GET    | /admin/users                            |                                        | users: Array<User>               |
 | Get All Authors          | GET    | /admin/users/authors                    |                                        | users: Array<User>               |
 | Create Post              | POST   | /posts                                  | title, summary, text, image, author_id | result: boolean                  |
@@ -70,6 +71,9 @@ CREATE TABLE POST_HAS_CATEGORY (
 | Add Category To Post     | POST   | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
 | Remove Category To Post  | DELETE | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
 | Authenticate User        | POST   | /auth/users/{userId}                    | hashed_password                        | result: boolean, error: string   |
+| Start Session            | POST   | /sessions/start/{userId}                | hashed_password                        | result: boolean, error: string   |
+| End Session              | POST   | /sessions/end                           |                                        |                                  |
+| Get Session              | GET    | /sessions                               |                                        | user_id: number                  |
 
 # Pages
 
