@@ -16,4 +16,8 @@ router.get('/:user_id', async (req, res, next) => {
   await controller.getById(req, res, next);
 });
 
+router.get('/by-username/:username', async (req, res, next) => {
+  await controller.getByUsername(req, res, next);
+});
+
 module.exports = router;

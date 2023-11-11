@@ -58,6 +58,38 @@ class UsersController {
       error
     });
   }
+
+  /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+  async getByUsername(req, res, next) {
+    const { username } = req.params;
+
+    let result = null;
+    let error = '';
+
+    const user = await User.findOne({
+      where: {
+        username
+      }
+    });
+
+    if (user !== null) {
+      result = user.toJSON();
+    } else {
+      res.statusCode = 404;
+
+      error = `User with username ${username} not found.`;
+    }
+
+    res.send({
+      result,
+      error
+    });
+  }
 }
 
 module.exports = { UsersController };

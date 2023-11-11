@@ -38,7 +38,7 @@ class SessionsController {
   async end(req, res, next) {
     req.session.destroy();
 
-    res.redirect('/view/sign-in');
+    res.redirect('/sign-in');
   }
 
   /**
