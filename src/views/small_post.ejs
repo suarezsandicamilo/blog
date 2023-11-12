@@ -1,6 +1,6 @@
 <div class="card mb-4">
   <% if (image !== null) { %>
-    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+    <a href="/view/posts/<%= id %>"><img class="card-img-top" src="<%= image %>" alt="<%= title %>" /></a>
   <% } %>
   <div class="card-body">
     <div class="small text-muted"><%= new Date(date).toLocaleDateString("es-cr", { dateStyle: "long" }) %></div>
