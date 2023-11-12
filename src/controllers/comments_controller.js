@@ -1,4 +1,4 @@
-//
+// A Controller that manages the requests related to comments.
 
 const express = require('express');
 
