@@ -38,7 +38,7 @@ module.exports = (sequelize, User) => {
       allowNull: false
     },
     image: {
-      type: DataTypes.BLOB
+      type: DataTypes.TEXT
     },
     author_id: {
       type: DataTypes.INTEGER,
