@@ -1,4 +1,5 @@
-//
+// A Controller that manages requests related to publications and its categories
+// associated
 
 const express = require('express');
 
@@ -79,6 +80,13 @@ class PostsController {
     });
   }
 
+  /**
+   * Add a category (must already exist, another case the result is false and
+   * the status code 404) to a specific publication.
+   * @param {*} req Must have 2 params: the post id and the category id
+   * @param {*} res 
+   * @param {*} next 
+   */
   async addCategoryToPost(req, res, next) {
     const { post_id, category_id } = req.params;
 
@@ -121,6 +129,13 @@ class PostsController {
     });
   }
 
+  /**
+   * Remove a category (must already exist, another case the result is false and
+   * the status code 404) from a specific publication.
+   * @param {*} req Must have 2 params: the post id and the category id
+   * @param {*} res 
+   * @param {*} next 
+   */
   async removeCategoryFromPost(req, res, next) {
     const { post_id, category_id } = req.params;
 
