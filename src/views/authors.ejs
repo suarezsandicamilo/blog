@@ -7,7 +7,7 @@
             <div class="col-sm-6">
               <ul class="list-unstyled mb-0">
                 <% } %>
-                  <li><a href="/view/users/<%= user.id %>"><%= user.username %></a></li>
+                  <li><a href="/users/<%= user.id %>/show_posts"><%= user.username %></a></li>
                 <% if (index % 2 !== 0 || index === authors.users.length - 1) { %>
               </ul>
             </div>
