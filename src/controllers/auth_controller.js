@@ -1,9 +1,12 @@
-//
+// A controller to manages the requests related to authentication user.
 
 const express = require('express');
 
 const { User } = require('./../models/models.js');
 
+/**
+ * Controller of requests related to authentication user.
+ */
 class AuthController {
   /**
    * 
