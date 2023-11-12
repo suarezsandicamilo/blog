@@ -8,6 +8,9 @@ const { DataTypes, Model, Sequelize } = require('sequelize');
  * @returns 
  */
 module.exports = (sequelize, Post) => {
+  /**
+   * Represents the Category table.
+   */
   class Category extends Model {
   }
 
