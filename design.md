@@ -64,6 +64,7 @@ CREATE TABLE POST_HAS_CATEGORY (
 | Create Post               | POST   | /posts                                  | title, summary, text, image, author_id | result: boolean                  |
 | Get Post By Id            | GET    | /posts/{postId}                         |                                        | result: Post?, error: string     |
 | Get All Posts             | GET    | /posts                                  |                                        | posts: Array<Post>               |
+| Get Post By Category      | GET    | /posts/by-category/{categoryId}         |                                        | posts: Array<Post>               |
 | Create Comment            | POST   | /posts/{postId}/comments                | user_id, text                          | result: boolean                  |
 | Get Comment By Id         | GET    | /posts/{postId}/comments/{commentId}    |                                        | result: Comment?, error: string  |
 | Get All Comments Of Post  | GET    | /posts/{postId}/comments                |                                        | comments: Array<Comment>         |

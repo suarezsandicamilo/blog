@@ -42,4 +42,8 @@ router.delete('/:post_id/categories/:category_id', async (req, res, next) => {
   await posts_controller.removeCategoryFromPost(req, res, next);
 });
 
+router.get('/categories/:category_id', async (req, res, next) => {
+  await posts_controller.getAllByCategory(req, res, next);
+});
+
 module.exports = router;

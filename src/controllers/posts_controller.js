@@ -181,6 +181,48 @@ class PostsController {
       error
     });
   }
+
+  /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+  async getAllByCategory(req, res, next) {
+    const { category_id } = req.params;
+
+    // const posts = await Post.findAll({
+    //   include: [{
+    //     model: PostHasCategory,
+    //     where: {
+    //       category_id
+    //     }
+    //   }]
+    // });
+
+    let post_has_category = await PostHasCategory.findAll({
+      where: {
+        category_id
+      }
+    })
+
+    post_has_category = post_has_category
+      .map(p => p.toJSON())
+      .map(p => p.post_id);
+
+    // Remove repeats
+    post_has_category = [...new Set(post_has_category)];
+
+    const posts = await Post.findAll({
+      where: {
+        id: post_has_category
+      }
+    });
+
+    res.send({
+      posts: posts.map(p => p.toJSON())
+    });
+  }
 }
 
 module.exports = { PostsController }
