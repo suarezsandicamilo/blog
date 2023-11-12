@@ -52,28 +52,30 @@ CREATE TABLE POST_HAS_CATEGORY (
 
 # Use Cases
 
-| Use Case                 | Method | Request URL                             | Request Body                           | Response Body                    |
-| ------------------------ | ------ | --------------------------------------- | -------------------------------------- | -------------------------------- |
-| Create User              | POST   | /users                                  | username, email, hashed_password       | result: boolean                  |
-| Get User By Id           | GET    | /users/{userId}                         |                                        | result: User?, error: string     |
-| Get User By Username     | GET    | /users/by-username/{username}           |                                        | result: User?, error: string     |
-| Get All Users            | GET    | /admin/users                            |                                        | users: Array<User>               |
-| Get All Authors          | GET    | /admin/users/authors                    |                                        | users: Array<User>               |
-| Create Post              | POST   | /posts                                  | title, summary, text, image, author_id | result: boolean                  |
-| Get Post By Id           | GET    | /posts/{postId}                         |                                        | result: Post?, error: string     |
-| Get All Posts            | GET    | /posts                                  |                                        | posts: Array<Post>               |
-| Create Comment           | POST   | /posts/{postId}/comments                | user_id, text                          | result: boolean                  |
-| Get Comment By Id        | GET    | /posts/{postId}/comments/{commentId}    |                                        | result: Comment?, error: string  |
-| Get All Comments Of Post | GET    | /posts/{postId}/comments                |                                        | comments: Array<Comment>         |
-| Create Category          | POST   | /categories                             | name                                   | result: boolean                  |
-| Get Category By Id       | GET    | /categories/{categoryId}                |                                        | result: Category?, error: string |
-| Get All Categories       | GET    | /categories                             |                                        | categories: Array<Category>      |
-| Add Category To Post     | POST   | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
-| Remove Category To Post  | DELETE | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
-| Authenticate User        | POST   | /auth/users/{userId}                    | hashed_password                        | result: boolean, error: string   |
-| Start Session            | POST   | /sessions/{userId}                      | hashed_password                        | result: boolean, error: string   |
-| End Session              | DELETE | /sessions                               |                                        |                                  |
-| Get Session              | GET    | /sessions                               |                                        | user_id: number                  |
+| Use Case                  | Method | Request URL                             | Request Body                           | Response Body                    |
+| ------------------------- | ------ | --------------------------------------- | -------------------------------------- | -------------------------------- |
+| Create User               | POST   | /users                                  | username, email, hashed_password       | result: boolean                  |
+| Get User By Id            | GET    | /users/{userId}                         |                                        | result: User?, error: string     |
+| Get User By Username      | GET    | /users/by-username/{username}           |                                        | result: User?, error: string     |
+| Set User Is Author        | PATCH  | /users/{userId}/author/{value}          |                                        | result: boolean, error: string   |
+| Set User Is Administrator | PATCH  | /users/{userId}/admin/{value}           |                                        | result: boolean, error: string   |
+| Get All Users             | GET    | /admin/users                            |                                        | users: Array<User>               |
+| Get All Authors           | GET    | /admin/users/authors                    |                                        | users: Array<User>               |
+| Create Post               | POST   | /posts                                  | title, summary, text, image, author_id | result: boolean                  |
+| Get Post By Id            | GET    | /posts/{postId}                         |                                        | result: Post?, error: string     |
+| Get All Posts             | GET    | /posts                                  |                                        | posts: Array<Post>               |
+| Create Comment            | POST   | /posts/{postId}/comments                | user_id, text                          | result: boolean                  |
+| Get Comment By Id         | GET    | /posts/{postId}/comments/{commentId}    |                                        | result: Comment?, error: string  |
+| Get All Comments Of Post  | GET    | /posts/{postId}/comments                |                                        | comments: Array<Comment>         |
+| Create Category           | POST   | /categories                             | name                                   | result: boolean                  |
+| Get Category By Id        | GET    | /categories/{categoryId}                |                                        | result: Category?, error: string |
+| Get All Categories        | GET    | /categories                             |                                        | categories: Array<Category>      |
+| Add Category To Post      | POST   | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
+| Remove Category To Post   | DELETE | /posts/{postId}/categories/{categoryId} |                                        | result: boolean, error: string   |
+| Authenticate User         | POST   | /auth/users/{userId}                    | hashed_password                        | result: boolean, error: string   |
+| Start Session             | POST   | /sessions/{userId}                      | hashed_password                        | result: boolean, error: string   |
+| End Session               | DELETE | /sessions                               |                                        |                                  |
+| Get Session               | GET    | /sessions                               |                                        | user_id: number                  |
 
 # Pages
 
