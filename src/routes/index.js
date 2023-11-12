@@ -5,20 +5,28 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
-  const authors = await fetch(`http://${req.headers.host}/admin/users/authors`);
+  const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
 
-  const categories = await fetch(`http://${req.headers.host}/categories`);
+  const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
 
-  const posts = await fetch(`http://${req.headers.host}/posts`);
+  const posts = await (await fetch(`http://${req.headers.host}/posts`)).json();
 
-  const sessions = await fetch(`http://${req.headers.host}/sessions`);
+  const sessions = await (await fetch(`http://${req.headers.host}/sessions`)).json();
+
+  for (const post of posts.posts) {
+    const user = await (await fetch(`http://${req.headers.host}/users/${post.author_id}`)).json();
+    const comments = await (await fetch(`http://${req.headers.host}/posts/${post.id}/comments`)).json();
+
+    post.author = user.result;
+    post.comments = comments;
+  }
 
   res.render('index', {
     title: 'Blog',
-    authors: await authors.json(),
-    categories: await categories.json(),
-    posts: await posts.json(),
-    sessions: await sessions.json()
+    authors,
+    categories,
+    posts,
+    sessions
   });
 });
 

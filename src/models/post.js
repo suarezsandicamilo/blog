@@ -30,7 +30,7 @@ module.exports = (sequelize, User) => {
       allowNull: false
     },
     summary: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.TEXT,
       allowNull: false
     },
     text: {

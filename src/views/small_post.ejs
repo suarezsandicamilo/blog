@@ -4,8 +4,16 @@
   <% } %>
   <div class="card-body">
     <div class="small text-muted"><%= new Date(date).toLocaleDateString("es-cr", { dateStyle: "long" }) %></div>
-    <h2 class="card-title h4"><%= title %></h2>
-    <p class="card-text"><%= summary %></p>
-    <a class="btn btn-primary" href="/view/posts/<%= id %>">Leer más →</a>
+    <h2 class="card-title h4"><a href="/view/posts/<%= id %>"><%= title %></a></h2>
+    <% if (summary.length < 300) { %>
+      <p class="card-text"><%= summary %></p>
+    <% } else { %>
+      <p class="card-text"><%= summary.substring(0, 300) %>...</p>
+      <a class="btn btn-primary" href="/view/posts/<%= id %>">Leer más →</a>
+    <% } %>
+  </div>
+  <div class="card-footer">
+    <span>Autor: <a href="/view/users/<%= author.id %>"><%= author.username %></a></span>
+    <span>Comentarios: <a href="/view/posts/<%= id %>"><%= comments.comments.length %></a></span>
   </div>
 </div>

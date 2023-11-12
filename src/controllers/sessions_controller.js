@@ -49,7 +49,7 @@ class SessionsController {
    * @param {express.NextFunction} next 
    */
   async getUserId(req, res, next) {
-    let user_id = req.session?.user_id ?? 0;
+    const user_id = req.session?.user_id ?? 0;
 
     res.send({
       user_id
