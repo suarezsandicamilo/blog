@@ -1,4 +1,4 @@
-//
+// A Controller that manages the requests related to create and get user.
 
 const express = require('express');
 
@@ -6,7 +6,7 @@ const { User } = require('./../models/models.js');
 
 class UsersController {
   /**
-   * 
+   * Create a user in data base according to body of req using the User model.
    * @param {express.Request} req 
    * @param {express.Response} res 
    * @param {express.NextFunction} next 
@@ -32,7 +32,7 @@ class UsersController {
   }
 
   /**
-   * 
+   * Get a user by ID.  
    * @param {express.Request} req 
    * @param {express.Response} res 
    * @param {express.NextFunction} next 
