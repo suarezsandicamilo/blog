@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { User } = require('./../models/models.js');
+const { User, Post } = require('./../models/models.js');
 
 class UsersController {
   /**
@@ -94,14 +94,15 @@ class UsersController {
   /**
    * /users/{userId}/posts  
    */
-  async getPosts(req, rest, next) {
-    const { user_id } = req.params;
+  async getPosts(req, res, next) {
+    const { author_id } = req.params;
 
     const posts = await Post.findAll({
       where: {
-        user_id
+        author_id
       }
     });
+
 
     res.send({
       posts: posts.map(p => p.toJSON())
