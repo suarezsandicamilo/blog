@@ -92,6 +92,23 @@ class UsersController {
   }
 
   /**
+   * /users/{userId}/posts  
+   */
+  async getPosts(req, rest, next) {
+    const { user_id } = req.params;
+
+    const posts = await Post.findAll({
+      where: {
+        user_id
+      }
+    });
+
+    res.send({
+      posts: posts.map(p => p.toJSON())
+    });
+  }
+
+  /**
    * 
    * @param {express.Request} req 
    * @param {express.Response} res 
