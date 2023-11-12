@@ -2,7 +2,7 @@
   <% if (index % 2 === 0) { %>
     <div class="col-lg-6">
   <% } %>
-    <%- include('./post.ejs', { id: post.id, date: post.date, time: post.time, title: post.title, summary: post.summary, image: post.image }) %>
+    <%- include('./small_post.ejs', { id: post.id, date: post.date, time: post.time, title: post.title, summary: post.summary, image: post.image }) %>
   <% if (index % 2 !== 0 || index === posts.posts.length - 1) { %>
     </div>
   <% } %>

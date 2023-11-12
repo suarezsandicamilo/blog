@@ -20,4 +20,12 @@ router.get('/by-username/:username', async (req, res, next) => {
   await controller.getByUsername(req, res, next);
 });
 
+router.patch('/:user_id/author/:value', async (req, res, next) => {
+  await controller.setUserIsAuthor(req, res, next);
+})
+
+router.patch('/:user_id/admin/:value', async (req, res, next) => {
+  await controller.setUserIsAdmin(req, res, next);
+})
+
 module.exports = router;

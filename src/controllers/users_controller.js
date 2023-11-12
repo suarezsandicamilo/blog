@@ -90,6 +90,74 @@ class UsersController {
       error
     });
   }
+
+  /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+  async setUserIsAuthor(req, res, next) {
+    const { user_id, value } = req.params;
+
+    let result = true;
+    let error = '';
+
+    try {
+      await User.update({
+        is_author: value.toLocaleLowerCase() === 'true'
+      });
+    } catch (e) {
+      console.error(e);
+
+      result = false;
+    }
+
+    if (!result) {
+      res.statusCode = 404;
+
+      error = `Couldn't update the value of is_author in the user ${user_id}.`;
+    }
+
+    res.send({
+      result,
+      error
+    });
+  }
+
+  /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+  async setUserIsAdmin(req, res, next) {
+    const { user_id, value } = req.params;
+
+    let result = true;
+    let error = '';
+
+    try {
+      await User.update({
+        is_administrator: value.toLocaleLowerCase() === 'true'
+      });
+    } catch (e) {
+      console.error(e);
+
+      result = false;
+    }
+
+    if (!result) {
+      res.statusCode = 404;
+
+      error = `Couldn't update the value of is_administrator in the user ${user_id}.`;
+    }
+
+    res.send({
+      result,
+      error
+    });
+  }
 }
 
 module.exports = { UsersController };
