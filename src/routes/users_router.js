@@ -20,6 +20,10 @@ router.get('/by-username/:username', async (req, res, next) => {
   await controller.getByUsername(req, res, next);
 });
 
+router.get('/:user_id/posts', async (req, res, next) => {
+  await controller.getPosts(req, res, next);
+})
+
 router.patch('/:user_id/author/:value', async (req, res, next) => {
   await controller.setUserIsAuthor(req, res, next);
 })
