@@ -14,6 +14,7 @@ require('./models/models.js');
 // Routes configuration
 
 const indexRouter = require('./routes/index.js');
+const signUpRouter = require('./routes/sign_up.js');
 const signInRouter = require('./routes/sign_in.js');
 const signOutRouter = require('./routes/sign_out.js');
 const viewCategoriesRouter = require('./routes/view_categories.js');
@@ -52,10 +53,12 @@ app.use(session({
   cookie: { maxAge: 3600000 }  // Expire time of the session cookie
 }));
 
+
 // Routes Management
 
 app.use('/', indexRouter);
 app.use('/sign-in', signInRouter);
+app.use('/sign-up', signUpRouter);
 app.use('/sign-out', signOutRouter);
 app.use('/view/categories', viewCategoriesRouter);
 app.use('/view/posts', viewPostsRouter);
