@@ -3,7 +3,7 @@
 
 const express = require('express');
 
-const { User, Post, Category } = require('./../models/models.js');
+const { User, Post, Category, Comment } = require('./../models/models.js');
 
 /**
  * Controller of request related to user administration.
@@ -54,6 +54,24 @@ class AdminController {
     await Post.destroy({
       where: {
         id: parseInt(post_id)
+      }
+    });
+
+    res.send({
+      result,
+      error
+    });
+  }
+  async removeCommentByIds(req, res, next) {
+    const { post_id, comment_id } = req.params;
+
+    let result = true;
+    let error = '';
+
+    await Comment.destroy({
+      where: {
+        id: parseInt(comment_id),
+        post_id: parseInt(post_id)
       }
     });
 

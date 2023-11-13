@@ -1,0 +1,9 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <p class="card-text"><%= text %>...</p>
+  </div>
+  <div class="card-footer">
+    <span>Autor: <a href="/users/<%= user_id %>/show_posts"><%= author %></a></span>
+    <button class="delete-comment-button btn btn-primary" data-commment-id="<%= id %>" data-post-id="<%= post_id %>">Eliminar Comentario</button>
+  </div>
+</div>

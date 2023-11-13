@@ -1,6 +1,6 @@
-document.getElementById('delete_posts_btn').addEventListener('click', () => {
+document.getElementById('admin_posts_btn').addEventListener('click', () => {
   // Redirigir a la página de usuario
-  window.location.href = '/admin/delete_posts'; // Reemplaza '/user' con la ruta de la página del usuario
+  window.location.href = '/admin/admin_posts'; // Reemplaza '/user' con la ruta de la página del usuario
 });
 
 document.getElementById('delete_comments_btn').addEventListener('click', () => {

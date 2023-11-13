@@ -9,8 +9,8 @@ document.querySelectorAll('.delete-post-button').forEach(button => {
     });
 
     if (response.ok) {
-      window.location = '/admin/delete_posts';
-      console.log('Publicación eliminada correctamente');
+      alert('Publicación eliminada correctamente');
+      window.location = '/admin/admin_posts';
     } else {
       throw new Error('No se pudo eliminar la publicación');
     }

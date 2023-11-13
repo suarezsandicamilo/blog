@@ -21,12 +21,17 @@ router.delete('/:post_id/delete', async (req, res, next) => {
   await controller.removePostById(req, res, next);
 });
 
+router.delete('/:post_id/post/:comment_id/comment', async (req, res, next) => {
+  console.log("Voy a eliminar un comment");
+  await controller.removeCommentByIds(req, res, next);
+});
+
 router.delete('/:category_id/delete_category', async (req, res, next) => {
   console.log("Voy a eliminar una categoria");
   await controller.removeCategoryById(req, res, next);
 });
 
-router.get('/delete_posts', async (req, res, next) => {
+router.get('/admin_posts', async (req, res, next) => {
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
   const posts = await (await fetch(`http://${req.headers.host}/posts/`)).json();
@@ -39,9 +44,9 @@ router.get('/delete_posts', async (req, res, next) => {
     post.comments = comments;
   }
 
-  res.render('delete_posts_index', {
+  res.render('admin_posts', {
     title: 'Blog',
-    header_title: 'Eliminar publicaciones',
+    header_title: 'Administrar publicaciones',
     authors,
     categories,
     posts
@@ -70,11 +75,53 @@ router.get('/admin_categories', async (req, res, next) => {
   });
 });
 
-// router.get('/selection', async (req, res, next) => {
-//   res.render('admin_selection' , {
-//     title: 'Admin selection',
-//     header_title: 'Admin selection',
-//   });
-// });
+router.get('/admin_categories', async (req, res, next) => {
+  const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
+  const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
+  const posts = await (await fetch(`http://${req.headers.host}/posts/`)).json();
+
+  for (const post of posts.posts) {
+    const user = await (await fetch(`http://${req.headers.host}/users/${post.author_id}`)).json();
+    const comments = await (await fetch(`http://${req.headers.host}/posts/${post.id}/comments`)).json();
+
+    post.author = user.result;
+    post.comments = comments;
+  }
+
+  res.render('admin_categories', {
+    title: 'Blog',
+    header_title: 'Administrar categorías',
+    authors,
+    categories,
+    posts
+  });
+});
+
+// "/admin/comments_post/<%= id %>"
+router.get('/comments_post/:post_id', async (req, res, next) => {
+  const { post_id } = req.params;
+
+  const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
+  const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
+
+  const post = (await (await fetch(`http://${req.headers.host}/posts/${post_id}`)).json()).result;
+  const author = (await (await fetch(`http://${req.headers.host}/users/${post.author_id}`)).json()).result;
+  const comments = await (await fetch(`http://${req.headers.host}/posts/${post.id}/comments`)).json();
+  for (const comment of comments.comments) {
+    const user = await (await fetch(`http://${req.headers.host}/users/${comment.user_id}`)).json();
+
+    comment.author = user.result.username;
+  }
+
+  res.render('admin_post_comments', {
+    title: 'Blog',
+    header_title: post.title,
+    authors,
+    categories,
+    post,
+    author,
+    comments
+  });
+});
 
 module.exports = router;

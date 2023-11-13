@@ -16,19 +16,25 @@
     <%- include('./header.ejs'); %>
     <!--  -->
     <div class="container">
-      <h1>¿Con qué permisos desea acceder al sitio? %></h1>
+      <div class="row">
+        <h1>Lista de comentarios %></h1>
+        <div class="col-lg-8">
+          <div class="row" id="delete-posts-container">
+            <%- include('./delete_categories.ejs') %>
+            <!--  -->
+          </div>
           <!-- <button id="load-more-button">Cargar más publicaciones</button> -->
-          <button id="admin_posts_btn" class="btn btn-primary">Administrar publicaciones</button>
-          <button id="delete_comments_btn" class="btn btn-primary">Eliminar comentarios</button>
-          <button id="delete_authors_btn" class="btn btn-primary">Elminar autores</button>
-          <button id="admin_categories_btn" class="btn btn-primary">Administrar categorías</button>
+          <!--  -->
+        </div>
+      </div>
     </div>
     <footer class="py-5 bg-dark">
       <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/action_selection.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/delete_category.js"></script>
+    <script src="../js/create_category.js"></script>
   </body>
 </html>
