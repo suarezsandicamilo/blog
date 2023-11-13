@@ -1,15 +1,15 @@
 <div class="card mb-4">
   <% if (image !== null) { %>
-    <a href="/users/<%= id %>/show_posts"><img class="card-img-top" src="<%= image %>" alt="<%= title %>" /></a>
+    <a href="/view/posts/<%= id %>"><img class="card-img-top" src="<%= image %>" alt="<%= title %>" /></a>
   <% } %>
   <div class="card-body">
     <div class="small text-muted"><%= new Date(date).toLocaleDateString("es-cr", { dateStyle: "long" }) %></div>
-    <h2 class="card-title h4"><a href="/users/<%= id %>/show_posts"><%= title %></a></h2>
+    <h2 class="card-title h4"><a href="/view/posts/<%= id %>"><%= title %></a></h2>
     <% if (summary.length < 300) { %>
       <p class="card-text"><%= summary %></p>
     <% } else { %>
       <p class="card-text"><%= summary.substring(0, 300) %>...</p>
-      <a class="btn btn-primary" href="/users/<%= id %>/show_posts">Leer más →</a>
+      <a class="btn btn-primary" href="/view/posts/<%= id %>">Leer más →</a>
     <% } %>
   </div>
   <div class="card-footer">

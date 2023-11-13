@@ -1,0 +1,25 @@
+<div id="post" class="container">
+  <% if (post.image !== null) { %>
+    <div class="card mb-4">
+      <img class="card-img-top" src="<%= post.image %>" alt="<%= post.title %>" /></a>
+    </div>
+  <% } %>
+  <div class="small text-muted my-3">
+    <span><%= new Date(post.date).toLocaleDateString("es-cr", { dateStyle: "long" }) %>, </span>
+    <span><%= new Date(post.time).toLocaleTimeString("es-cr", { hour: "2-digit", minute: "2-digit", hourCycle: "h12" }) %></span>
+  </div>
+  <div class="my-3">
+    <span>Autor: <a href="/users/<%= post.author_id %>/show_posts"><%= author.username %></a></span>
+  </div>
+  <div class="my-3">
+    <h2><%= post.summary %></h2>
+  </div>
+  <div class="my-3">
+    <p><%= post.text %></p>
+  </div>
+</div>
+<div id="comments" class="container">
+  <% comments.comments.forEach(comment => { %>
+    <%- include('./comment.ejs', { id: comment.user_id, text: comment.text, author: comment.author }) %>
+  <% }) %>
+</div>

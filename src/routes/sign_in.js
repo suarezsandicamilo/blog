@@ -9,6 +9,7 @@ router.get('/', async (req, res, next) => {
 
   res.render('sign_in', {
     title: 'Blog',
+    header_title: 'Iniciar sesión',
     sessions: await sessions.json()
   });
 });
