@@ -80,6 +80,20 @@ class PostsController {
     });
   }
 
+  // '/:count/offset/:offset'
+  async getPosts(req, res, next) {
+    const { count, offset } = req.params;
+    const intCount = parseInt(count)
+    const intOffset = parseInt(offset);
+    const posts = await Post.findAll({
+      limit: intCount,
+      offset: intOffset
+    });
+    res.send({
+      posts: posts.map(p => p.toJSON())
+    });
+  }
+
   /**
    * Add a category (must already exist, another case the result is false and
    * the status code 404) to a specific publication.
