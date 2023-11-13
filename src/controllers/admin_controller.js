@@ -62,6 +62,24 @@ class AdminController {
       error
     });
   }
+  async removeAuthorById(req, res, next) {
+    const { author_id } = req.params;
+
+    let result = true;
+    let error = '';
+
+    await User.destroy({
+      where: {
+        id: parseInt(author_id)
+      }
+    });
+
+    res.send({
+      result,
+      error
+    });
+  }
+
   async removeCommentByIds(req, res, next) {
     const { post_id, comment_id } = req.params;
 

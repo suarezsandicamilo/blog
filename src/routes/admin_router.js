@@ -21,6 +21,12 @@ router.delete('/:post_id/delete', async (req, res, next) => {
   await controller.removePostById(req, res, next);
 });
 
+// fetch(`/admin/${user_id}/delete_author
+router.delete('/:author_id/delete_author', async (req, res, next) => {
+  console.log("Voy a eliminar un autor");
+  await controller.removeAuthorById(req, res, next);
+});
+
 router.delete('/:post_id/post/:comment_id/comment', async (req, res, next) => {
   console.log("Voy a eliminar un comment");
   await controller.removeCommentByIds(req, res, next);
@@ -75,7 +81,7 @@ router.get('/admin_categories', async (req, res, next) => {
   });
 });
 
-router.get('/admin_categories', async (req, res, next) => {
+router.get('/admin_authors', async (req, res, next) => {
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
   const posts = await (await fetch(`http://${req.headers.host}/posts/`)).json();
@@ -88,7 +94,7 @@ router.get('/admin_categories', async (req, res, next) => {
     post.comments = comments;
   }
 
-  res.render('admin_categories', {
+  res.render('admin_authors', {
     title: 'Blog',
     header_title: 'Administrar categorías',
     authors,
