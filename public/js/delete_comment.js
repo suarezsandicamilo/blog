@@ -9,7 +9,7 @@ document.querySelectorAll('.delete-comment-button').forEach(button => {
     });
 
     if (response.ok) {
-      window.location = '/admin/delete_posts';
+      window.location = '/admin/admin_posts';
       alert('Comentario eliminado correctamente');
     } else {
       throw new Error('No se pudo eliminar el comentario');
