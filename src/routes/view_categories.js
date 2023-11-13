@@ -8,12 +8,8 @@ router.get('/:category_id', async (req, res, next) => {
   const { category_id } = req.params;
 
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
-
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
-
   const posts = await (await fetch(`http://${req.headers.host}/posts/categories/${category_id}`)).json();
-
-  const sessions = await (await fetch(`http://${req.headers.host}/sessions`)).json();
 
   for (const post of posts.posts) {
     const user = await (await fetch(`http://${req.headers.host}/users/${post.author_id}`)).json();
@@ -31,8 +27,7 @@ router.get('/:category_id', async (req, res, next) => {
     header_title,
     authors,
     categories,
-    posts,
-    sessions
+    posts
   });
 });
 

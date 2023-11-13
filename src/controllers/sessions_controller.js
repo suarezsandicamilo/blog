@@ -21,39 +21,13 @@ class SessionsController {
     });
 
     if (result) {
-      req.session.user_id = parseInt(user_id);
+      res.cookie('user_id', parseInt(user_id));
     }
 
     res.send({
       result,
       error
     });
-  }
-
-  /**
-   * Manages the user session end.
-   * @param {express.Request} req 
-   * @param {express.Response} res 
-   * @param {express.NextFunction} next 
-   */
-  async end(req, res, next) {
-    req.session.destroy();
-
-    res.redirect('/sign-in');
-  }
-
-  /**
-   * Get the user ID of current session.
-   * @param {express.Request} req 
-   * @param {express.Response} res 
-   * @param {express.NextFunction} next 
-   */
-  async getUserId(req, res, next) {
-    const user_id = req.session?.user_id ?? 0;
-
-    res.send({
-      user_id
-    })
   }
 }
 

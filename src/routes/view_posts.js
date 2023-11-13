@@ -11,7 +11,6 @@ router.get('/:post_id', async (req, res, next) => {
 
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
-  const sessions = await (await fetch(`http://${req.headers.host}/sessions`)).json();
 
   const post = (await (await fetch(`http://${req.headers.host}/posts/${post_id}`)).json()).result;
   const author = (await (await fetch(`http://${req.headers.host}/users/${post.author_id}`)).json()).result;
@@ -30,8 +29,7 @@ router.get('/:post_id', async (req, res, next) => {
     categories,
     post,
     author,
-    comments,
-    sessions
+    comments
   });
 });
 

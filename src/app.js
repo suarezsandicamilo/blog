@@ -15,6 +15,7 @@ require('./models/models.js');
 
 const indexRouter = require('./routes/index.js');
 const signInRouter = require('./routes/sign_in.js');
+const signOutRouter = require('./routes/sign_out.js');
 const viewCategoriesRouter = require('./routes/view_categories.js');
 const viewPostsRouter = require('./routes/view_posts.js');
 
@@ -55,6 +56,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/sign-in', signInRouter);
+app.use('/sign-out', signOutRouter);
 app.use('/view/categories', viewCategoriesRouter);
 app.use('/view/posts', viewPostsRouter);
 

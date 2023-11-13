@@ -26,7 +26,6 @@ router.get('/:author_id/posts', async (req, res, next) => {
 
 router.get('/:author_id/show_posts', async (req, res, next) => {
   const user_id = req.params['author_id'];
-  const sessions = await(await fetch(`http://${req.headers.host}/sessions`)).json();
   const user = await(await fetch(`http://${req.headers.host}/users/${user_id}`)).json();
   const posts = await(await fetch(`http://${req.headers.host}/users/${req.params['author_id']}/posts`)).json();
 
@@ -41,8 +40,7 @@ router.get('/:author_id/show_posts', async (req, res, next) => {
     title: 'Blog',
     header_title: user.result.username,
     user: user.result,
-    posts,
-    sessions
+    posts
   });
 })
 
