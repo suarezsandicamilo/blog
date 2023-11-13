@@ -20,6 +20,10 @@ router.get('/by-username/:username', async (req, res, next) => {
   await controller.getByUsername(req, res, next);
 });
 
+router.get('/by-email/:email', async (req, res, next) => {
+  await controller.getByEmail(req, res, next);
+});
+
 router.get('/:author_id/posts', async (req, res, next) => {
   await controller.getPosts(req, res, next);
 })

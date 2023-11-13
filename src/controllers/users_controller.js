@@ -91,6 +91,38 @@ class UsersController {
     });
   }
 
+   /**
+   * 
+   * @param {express.Request} req 
+   * @param {express.Response} res 
+   * @param {express.NextFunction} next 
+   */
+   async getByEmail(req, res, next) {
+    const { email } = req.params;
+
+    let result = null;
+    let error = '';
+
+    const user = await User.findOne({
+      where: {
+        email
+      }
+    });
+
+    if (user !== null) {
+      result = user.toJSON();
+    } else {
+      res.statusCode = 404;
+
+      error = `User with email ${email} not found.`;
+    }
+
+    res.send({
+      result,
+      error
+    });
+  }
+
   /**
    * /users/{userId}/posts  
    */
