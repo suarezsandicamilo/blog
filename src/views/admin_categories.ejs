@@ -16,8 +16,24 @@
     <%- include('./header.ejs'); %>
     <!--  -->
     <div class="container">
-      <h1>Lista de publicaciones %></h1>
       <div class="row">
+        <div class="card mb-5">
+          <div class="container my-3">
+            <h2>Crear categoria</h2>
+            <form id="create-category-form">
+              <!-- name -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" id="name" class="form-control" name="name" placeholder="" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Crear categoría</button>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <h1>Lista de categorías %></h1>
         <div class="col-lg-8">
           <div class="row" id="delete-posts-container">
             <%- include('./delete_categories.ejs') %>
@@ -35,5 +51,6 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/delete_category.js"></script>
+    <script src="../js/create_category.js"></script>
   </body>
 </html>

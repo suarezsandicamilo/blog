@@ -9,9 +9,10 @@ document.querySelectorAll('.delete-category-button').forEach(button => {
     });
 
     if (response.ok) {
-      window.location = '/admin/delete_categories';
-      console.log('Categoria eliminada correctamente');
+      alert(`Categoría eliminada exitosamente.`);
+      window.location = '/admin/admin_categories';
     } else {
+      alert(`No se pudo eliminar la categoría.`);
       throw new Error('No se pudo eliminar la Categoria');
     }
   });

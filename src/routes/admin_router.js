@@ -48,7 +48,7 @@ router.get('/delete_posts', async (req, res, next) => {
   });
 });
 
-router.get('/delete_categories', async (req, res, next) => {
+router.get('/admin_categories', async (req, res, next) => {
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
   const posts = await (await fetch(`http://${req.headers.host}/posts/`)).json();
@@ -61,9 +61,9 @@ router.get('/delete_categories', async (req, res, next) => {
     post.comments = comments;
   }
 
-  res.render('delete_categories_index', {
+  res.render('admin_categories', {
     title: 'Blog',
-    header_title: 'Eliminar categorías',
+    header_title: 'Administrar categorías',
     authors,
     categories,
     posts
