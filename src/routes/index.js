@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
-  const posts = await (await fetch(`http://${req.headers.host}/posts`)).json();
+  const posts = await (await fetch(`http://${req.headers.host}/posts/5/offset/0`)).json();
 
   for (const post of posts.posts) {
     const user = await (await fetch(`http://${req.headers.host}/users/${post.author_id}`)).json();
