@@ -26,7 +26,7 @@ class PostsController {
         title,
         summary,
         text,
-        image,
+        image: image === '' ? null : image,
         author_id
       });
     } catch (e) {
