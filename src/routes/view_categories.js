@@ -4,12 +4,14 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/:category_id', async (req, res, next) => {
+  const { category_id } = req.params;
+
   const authors = await (await fetch(`http://${req.headers.host}/admin/users/authors`)).json();
 
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
 
-  const posts = await (await fetch(`http://${req.headers.host}/posts`)).json();
+  const posts = await (await fetch(`http://${req.headers.host}/posts/categories/${category_id}`)).json();
 
   const sessions = await (await fetch(`http://${req.headers.host}/sessions`)).json();
 
@@ -21,9 +23,12 @@ router.get('/', async (req, res, next) => {
     post.comments = comments;
   }
 
-  res.render('index', {
+  const header_title = categories.categories
+    .filter(c => c.id === parseInt(category_id))[0].name;
+
+  res.render('view_categories', {
     title: 'Blog',
-    header_title: 'Blog',
+    header_title,
     authors,
     categories,
     posts,

@@ -191,15 +191,6 @@ class PostsController {
   async getAllByCategory(req, res, next) {
     const { category_id } = req.params;
 
-    // const posts = await Post.findAll({
-    //   include: [{
-    //     model: PostHasCategory,
-    //     where: {
-    //       category_id
-    //     }
-    //   }]
-    // });
-
     let post_has_category = await PostHasCategory.findAll({
       where: {
         category_id

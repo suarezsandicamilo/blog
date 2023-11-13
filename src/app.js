@@ -15,6 +15,7 @@ require('./models/models.js');
 
 const indexRouter = require('./routes/index.js');
 const signInRouter = require('./routes/sign_in.js');
+const viewCategoriesRouter = require('./routes/view_categories.js');
 
 const usersRouter = require('./routes/users_router.js');
 const adminRouter = require('./routes/admin_router.js');
@@ -53,6 +54,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/sign-in', signInRouter);
+app.use('/view/categories', viewCategoriesRouter);
 
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
