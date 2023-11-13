@@ -24,7 +24,7 @@ const createPost = async (title, summary, text, image) => {
         title,
         summary,
         text,
-        author_id: 1 // TODO: Change for the user in session
+        author_id: parseInt(Cookies.get('user_id'))
     };
 
     if (image !== null) {

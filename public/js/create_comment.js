@@ -40,7 +40,7 @@ create_comment_form.addEventListener('submit', async (event) => {
     const text = form_data.get('text');
     const post_id = parseInt(form_data.get('post_id'));
 
-    const user_id = 1; // TODO: Change for the user in session
+    const user_id = parseInt(Cookies.get('user_id'));
 
     await createComment(post_id, user_id, text);
 });
