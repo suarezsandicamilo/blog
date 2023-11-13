@@ -22,6 +22,11 @@ router.get('/', async (req, res, next) => {
   await posts_controller.getAll(req, res, next);
 });
 
+// Get count posts beginning in offset
+router.get('/:count/offset/:offset', async (req, res, next) => {
+  await posts_controller.getPosts(req, res, next);
+});
+
 router.post('/:post_id/comments', async (req, res, next) => {
   await comments_controller.create(req, res, next);
 });
