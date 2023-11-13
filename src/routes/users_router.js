@@ -26,15 +26,23 @@ router.get('/:author_id/posts', async (req, res, next) => {
 
 router.get('/:author_id/show_posts', async (req, res, next) => {
   const user_id = req.params['author_id'];
-  const sessions = await fetch(`http://${req.headers.host}/sessions`);
-  const user = await fetch(`http://${req.headers.host}/users/${user_id}`);
-  const posts = await fetch(`http://${req.headers.host}/users/${req.params['author_id']}/posts`);
+  const sessions = await(await fetch(`http://${req.headers.host}/sessions`)).json();
+  const user = await(await fetch(`http://${req.headers.host}/users/${user_id}`)).json();
+  const posts = await(await fetch(`http://${req.headers.host}/users/${req.params['author_id']}/posts`)).json();
+
+  for (const post of posts.posts) {
+    const comments = await (await fetch(`http://${req.headers.host}/posts/${post.id}/comments`)).json();
+
+    post.author = user.result;
+    post.comments = comments;
+  }
 
   res.render('user_posts', {
-    title: 'Publicaciones de usuario',
-    user: await user.json(),
-    posts: await posts.json(),
-    sessions: await sessions.json()
+    title: 'Blog',
+    header_title: user.result.username,
+    user: user.result,
+    posts,
+    sessions
   });
 })
 
