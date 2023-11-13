@@ -3,7 +3,7 @@
 ## Integrantes
 
 * Camilo Suárez Sandí (C17811)
-* Ángel Chaves Chinchilla ()
+* Ángel Chaves Chinchilla (c12113)
 
 ## Manual de usuario
 
