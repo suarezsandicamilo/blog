@@ -3,7 +3,7 @@
 
 const express = require('express');
 
-const { User, Post } = require('./../models/models.js');
+const { User, Post, Category } = require('./../models/models.js');
 
 /**
  * Controller of request related to user administration.
@@ -57,6 +57,24 @@ class AdminController {
       }
     });
 
+    res.send({
+      result,
+      error
+    });
+  }
+
+  async removeCategoryById(req, res, next) {
+    const { category_id } = req.params;
+  
+    let result = true;
+    let error = '';
+  
+    await Category.destroy({
+      where: {
+        id: parseInt(category_id)
+      }
+    });
+  
     res.send({
       result,
       error
