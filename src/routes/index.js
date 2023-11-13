@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
 
   const categories = await (await fetch(`http://${req.headers.host}/categories`)).json();
 
-  const posts = await (await fetch(`http://${req.headers.host}/posts`)).json();
+  const posts = await (await fetch(`http://${req.headers.host}/posts/5/offset/0`)).json();
 
   const sessions = await (await fetch(`http://${req.headers.host}/sessions`)).json();
 
