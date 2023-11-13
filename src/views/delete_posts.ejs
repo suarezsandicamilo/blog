@@ -1,0 +1,9 @@
+<% posts.posts.forEach((post, index) => { %>
+  <% if (index % 2 === 0) { %>
+    <div class="col-lg-6">
+  <% } %>
+    <%- include('./delete_post.ejs', { id: post.id, date: post.date, time: post.time, title: post.title, summary: post.summary, image: post.image, author: post.author, comments: post.comments }) %>
+  <% if (index % 2 !== 0 || index === posts.posts.length - 1) { %>
+    </div>
+  <% } %>
+<% }) %>

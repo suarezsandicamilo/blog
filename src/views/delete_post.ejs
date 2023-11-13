@@ -1,0 +1,21 @@
+<div class="card mb-4">
+  <% if (image !== null) { %>
+    <a href="/view/posts/<%= id %>"><img class="card-img-top" src="<%= image %>" alt="<%= title %>" /></a>
+  <% } %>
+  <div class="card-body">
+    <div class="small text-muted"><%= new Date(date).toLocaleDateString("es-cr", { dateStyle: "long" }) %></div>
+    <h2 class="card-title h4"><a href="/view/posts/<%= id %>"><%= title %></a></h2>
+    <% if (summary.length < 300) { %>
+      <p class="card-text"><%= summary %></p>
+      <button class="delete-post-button btn btn-primary" data-post-id="<%= id %>">Eliminar publicación</button>
+    <% } else { %>
+      <p class="card-text"><%= summary.substring(0, 300) %>...</p>
+      <!-- <a class="btn btn-primary" href="/posts/<%= id %>/delete">Eliminar</a> -->
+      <button class="delete-post-button btn btn-primary" data-post-id="<%= id %>">Eliminar publicación</button>
+    <% } %>
+  </div>
+  <div class="card-footer">
+    <span>Autor: <a href="/users/<%= id %>/show_posts"><%= author.username %></a></span>
+    <span>Comentarios: <a href="/users/<%= id %>/show_posts"><%= comments.comments.length %></a></span>
+  </div>
+</div>
