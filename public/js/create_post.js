@@ -33,8 +33,6 @@ const createPost = async (title, summary, text, image) => {
 
     const { result, error } = await fetchPost('/posts', body);
 
-    console.log(error);
-
     if (result === null) {
         alert(error);
     } else {

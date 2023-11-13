@@ -1,0 +1,13 @@
+<div class="card mb-5">
+  <div class="container my-3">
+    <h2>Agregar comentario</h2>
+    <form id="create-comment-form">
+      <input type="hidden" name="post_id" value="<%= post.id %>"/>
+      <!-- text -->
+      <div class="mb-3">
+        <textarea id="text" class="form-control" name="text"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</div>
