@@ -26,4 +26,18 @@ router.get('/', async (req, res, next) => {
   });
 });
 
+router.get('/selection', async (req, res, next) => {
+  res.render('admin_selection' , {
+    title: 'Blog',
+    header_title: 'Seleccion de permisos',
+  });
+});
+
+router.get('/action_selection', async (req, res, next) => {
+  res.render('action_selection' , {
+    title: 'Blog',
+    header_title: 'Selección de gestión',
+  });
+});
+
 module.exports = router;
