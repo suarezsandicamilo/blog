@@ -79,6 +79,8 @@ CREATE TABLE POST_HAS_CATEGORY (
 | Get Session               | GET    | /sessions                               |                                        | user_id: number                  |
 | Get User Posts            | GET    | /users/{userId}/posts                   |                                        | posts: Array<Post>               |
 | Get User Posts            | GET    | /users/{userId}/show_posts              |                                        | res.render(user_posts.ejs)       |
+| Get Some Posts            | GET    | /posts/{count}/offset/{offset}          |                                        | posts: Array<Post>               |
+
 
 # Pages
 
