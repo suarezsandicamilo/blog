@@ -98,6 +98,7 @@ class UsersController {
     const { author_id } = req.params;
 
     const posts = await Post.findAll({
+      order: [['id', 'DESC']],
       where: {
         author_id
       }
