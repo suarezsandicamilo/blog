@@ -19,6 +19,12 @@ const fetchPost = async (url = '', data = {}) => {
 
 const sign_in_form = document.querySelector('#sign-in-form');
 
+
+document.getElementById('sign-up-btn').addEventListener('click', () => {
+    window.location.href = '/sign-up';
+});
+  
+
 const getUser = async (username) => {
     const response = await fetch(`/users/by-username/${username}`);
 
