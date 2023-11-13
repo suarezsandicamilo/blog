@@ -15,5 +15,5 @@ document.getElementById('delete_authors_btn').addEventListener('click', () => {
 
 document.getElementById('delete_categories_btn').addEventListener('click', () => {
   // Redirigir a la página de administrador
-  window.location.href = '/admin/delete_posts'; // Reemplaza '/admin' con la ruta de la página de administrador
+  window.location.href = '/admin/delete_categories'; // Reemplaza '/admin' con la ruta de la página de administrador
 });
