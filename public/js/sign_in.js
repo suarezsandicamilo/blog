@@ -58,7 +58,11 @@ sign_in_form.addEventListener('submit', async (event) => {
         const result = await signIn(user.id, password);
 
         if (result) {
-            window.location = '/';
+            if (user.is_administrator) {
+                window.location = '/selection';
+            } else {
+                window.location = '/';
+            }
         }
     }
 });

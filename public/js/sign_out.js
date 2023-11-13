@@ -2,4 +2,4 @@
 
 Cookies.remove('user_id');
 
-window.location = '/';
+window.location = '/sign-in';
