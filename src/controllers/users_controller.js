@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { User } = require('./../models/models.js');
+const { User, Post } = require('./../models/models.js');
 
 class UsersController {
   /**
@@ -88,6 +88,24 @@ class UsersController {
     res.send({
       result,
       error
+    });
+  }
+
+  /**
+   * /users/{userId}/posts  
+   */
+  async getPosts(req, res, next) {
+    const { author_id } = req.params;
+
+    const posts = await Post.findAll({
+      where: {
+        author_id
+      }
+    });
+
+
+    res.send({
+      posts: posts.map(p => p.toJSON())
     });
   }
 

@@ -77,6 +77,8 @@ CREATE TABLE POST_HAS_CATEGORY (
 | Start Session             | POST   | /sessions/{userId}                      | hashed_password                        | result: boolean, error: string   |
 | End Session               | DELETE | /sessions                               |                                        |                                  |
 | Get Session               | GET    | /sessions                               |                                        | user_id: number                  |
+| Get User Posts            | GET    | /users/{userId}/posts                   |                                        | posts: Array<Post>               |
+| Get User Posts            | GET    | /users/{userId}/show_posts              |                                        | res.render(user_posts.ejs)       |
 
 # Pages
 

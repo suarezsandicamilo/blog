@@ -13,10 +13,23 @@ const { Comment } = require('./comment.js')(sequelize, User, Post);
 const { PostHasCategory } = require('./post_has_category.js')(sequelize, Post, Category);
 
 module.exports = {
-    sequelize,
-    User,
-    Category,
-    Post,
-    Comment,
-    PostHasCategory
-};
+        sequelize,
+        User,
+        Category,
+        Post,
+        Comment,
+        PostHasCategory
+    };
+
+// FOR TEST DATA BASE CONNECTION
+// const { timeStamp } = require('console');
+// async function test() {
+//     try {
+//         await sequelize.authenticate();
+//         console.log('succes');
+//     }
+//     catch (error) {
+//         console.error('Failed');
+//     }
+// }
+// test();
